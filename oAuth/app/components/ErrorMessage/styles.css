@@ -1,0 +1,10 @@
+/* stylelint-disable */
+
+.form__error {
+  background-color: #FB4F4F;
+  color: white;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  user-select: none;
+}

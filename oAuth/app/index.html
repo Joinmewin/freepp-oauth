@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Load the AJAX API -->
+  <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+  <!--The first thing in any HTML file should be the charset-->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG-PqOjPVK-ZoCckUAFRxWVRIe5wmYJog"
+  type="text/javascript"></script>
+  <meta charset="utf-8">
+  <!-- Make the page mobile compatible -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Allow installing the app to the homescreen -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <title>JoinMe oAuth</title>
+</head>
+<body>
+<!-- The app hooks into this div -->
+<div id="app"></div>
+<script>
+      var WebFontConfig = {
+        google: { families: [ 'Roboto:400,300,500:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+<!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically includes all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this HTML file. Don't add any assets here! (Check out webpackconfig.js if you want to know more) -->
+</body>
+</html>
