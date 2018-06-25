@@ -66,7 +66,7 @@ export function* postToken(action) {
       console.log("token error: Unauthorized");
       yield put(showError('token Unauthorized'));
     } else {
-      console.log("token error: ",error.type);
+      console.log("token error: ",error);
       yield put(showError(error.type));
     }
     return false;

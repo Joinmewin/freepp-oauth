@@ -63,7 +63,6 @@ User, JoinMe Authentication Server, and 3rd Party Application.
 | Request  | /oauth/login?domain_id={{dmid}}&agent_id={{agid}}&client_id={{appid}}&redirect_uri=https://www.agent-bot.com/redirecturl&[scope](#identify-access-scopes)=Profile.Basic+Agent.Basic&state=A |
 | Response | Continue user login flow, and if login successfully , server will send "code" back to "reidrecturl" |
 
- 
 ---------------------------
 
 ### **Identify access scopes**
@@ -177,9 +176,39 @@ Party can call this API directly for JSSDK service.
 
 # 5. Using Access Token to call OAuth APIs  
 
-JoinMe OAuth API is TBD, and will update soon.
+JoinMe OAuth API released is below:
+
+## 5.1 **OAuth Profile Info** 
+
+Profile request example  
+
+```http
+curl -X GET \
+-H 'Authorization: Bearer {ENTER_ACCESS_TOKEN}' \
+http://api.joinme.com/OAuthbot/v1/profile 
+```
+
+Get user profile information by oauth.  
 
 
+
+| Method   | GET                                                          |
+| -------- | ------------------------------------------------------------ |
+| Header   | Authorization : Bearer {Access Token}                        |
+| Request  | /OAuthbot/v1/profile                                         |
+| Body     | None                                                         |
+| Response | {<br />"name": "Joinme Test",<br />"pid": "Uxxxxxxxxxxxxxx...",<br />"avatar": "https://abc.com/...",<br />"locale": "zh_TW"<br />} |
+
+
+
+Server returns the status code 200 and a JSON object with the following parameters.  
+
+| **Field** | **Type** | **Description**                                              |
+| --------- | -------- | ------------------------------------------------------------ |
+| name      | String   | Display Name                                                 |
+| pid       | String   | Profile ID                                                   |
+| avator    | String   | Image URL                                                    |
+| locale    | Locale   | A set of parameters that defines the user's language. Reference from [ISO639](http://www.oracle.com/technetwork/java/javase/javase7locales-334809.html). |
 
 
 

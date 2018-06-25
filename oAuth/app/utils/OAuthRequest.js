@@ -170,6 +170,55 @@ class OAuthRequest {
     });
   }
 
+  getWithAccess(path, token) {
+    
+    return new Promise((resolve, reject) => {
+      fetch(this.apiUrl.concat(path), {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          Authorization: 'Bearer '.concat(
+            token,
+          ),
+          'Access-Control-Allow-Origin': '*',
+          Origin: this.apiUrl,
+        },
+      })
+        .then(response => {
+          if (response.redirected) {
+            window.location.replace(response.url);
+          }
+          if (response.status === 401) {
+            reject({
+              ...response,
+              status: response.status,
+              type: 'Unauthorized',
+            });
+          } else if (response.status === 400) {
+            reject({
+              ...response,
+              status: response.status,
+              type: 'Denied',
+            });
+          } else if (response.status >= 402) {
+            reject({
+              ...response,
+              status: response.status,
+              type: 'Bad Request',
+            });
+          }
+          return response;
+        })
+        .then(result => {
+          resolve(result.json());
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
+
   get(path, params) {
     const esc = encodeURIComponent;
     const query = Object.keys(params)
@@ -230,8 +279,12 @@ class OAuthRequest {
       return this.postWithBasicAuth('/provider/token', params, appId, appKey);
     }
 
-    access(token) {
+    graphql_access(token) {
           return this.postWithAccess('/access', token);
+     }
+
+	access(token) {
+          return this.getWithAccess('/OAuthbot/v1/profile', token);
      }
 }
 

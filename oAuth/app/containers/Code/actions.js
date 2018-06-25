@@ -1,4 +1,4 @@
-import { GET_RESOURCE, RESP_RESOURCE, POST_TOKEN, POST_ACCESS } from './constants';
+import { GET_RESOURCE, RESP_RESOURCE, POST_TOKEN, ACCESS } from './constants';
 
 export function getResource(data) {
   return {
@@ -23,7 +23,7 @@ export function getToken(data) {
 
 export function getProfile(data) {
   return {
-    type: POST_ACCESS,
+    type: ACCESS,
     data,
   };
 }

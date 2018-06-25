@@ -2,13 +2,13 @@ import { fork, call, put } from 'redux-saga/effects';
 import { takeEvery } from 'redux-saga';
 import oAuth from 'utils/OAuthRequest';
 import { showError } from 'containers/App/actions';
-import { POST_ACCESS } from 'containers/Code/constants';
+import { ACCESS } from 'containers/Code/constants';
 import { getProfile } from 'containers/Code/actions';
 import {
   getAccToken
 } from 'utils/storageUtility';
 
-export function* postAccess(action) {
+export function* Access(action) {
   console.log("postAccess()");
   let resp;
   try {
@@ -28,7 +28,7 @@ export function* postAccess(action) {
 }
 
 export function* accessFlow() {
-  yield takeEvery(POST_ACCESS, postAccess);
+  yield takeEvery(ACCESS, Access);
 }
 
 export default function* access() {
