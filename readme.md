@@ -42,7 +42,7 @@ User, FreePP Authentication Server, and 3rd Party Application.
    redirect_uri, and return granted code,& state. Please refer “Redirect code
    handle".
 
-4. 3rd Party requests access token by “https://imc-pro.freepp.com/provider/token”
+4. 3rd Party requests access token by “https://pro20.freepp.com/provider/token”
    endoint with code.
 
 5. FreePP Authentication Server validate 3rd Party Application, and returns
@@ -60,7 +60,7 @@ User, FreePP Authentication Server, and 3rd Party Application.
 | Method   | GET                                                          |
 | -------- | ------------------------------------------------------------ |
 | Header   |                                                              |
-| Request  | /oauth/login?domain_id={{dmid}}&agent_id={{agid}}&client_id={{appid}}&redirect_uri=https://www.agent-bot.com/redirecturl&[scope](#identify-access-scopes)=Profile.Basic+Agent.Basic&state=A |
+| Request  | /oauth/login?domain_id={{dmid}}&agent_id={{agid}}&client_id={{appid}}&redirect_uri=https://www.agent-bot.com/redirecturl&scope=Profile.Basic&state=A |
 | Response | Continue user login flow, and if login successfully , server will send "code" back to "reidrecturl" |
 
 ---------------------------
@@ -70,9 +70,8 @@ User, FreePP Authentication Server, and 3rd Party Application.
 | *Scopes*        | *Description*                         |
 |-----------------|---------------------------------------|
 | Profile.Basic   | Profile Basic Opertation.             |
-| Agent.Basic     | Agent Basic Opertation.               |
 | Agent.JsSdk.All | This is only for JSSDK Service of APP |
-| Robot.Basic     | Robot Basic Operation.                |
+
 
 
 
@@ -136,7 +135,7 @@ Frequently required/refresh access token by single or multi threads.
 #### a. grant_type = authorization_code
 
 This is authorized request to get grand code to query user’s information in
-JoinMe Server, and needs approved by user. For the OAuth’s flow, please use this
+FreePP Server, and needs approved by user. For the OAuth’s flow, please use this
 type to get Access Token.
 
 | Method   | POST                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -176,7 +175,7 @@ Party can call this API directly for JSSDK service.
 
 # 5. Using Access Token to call OAuth APIs  
 
-JoinMe OAuth API released is below:
+FreePP OAuth API released is below:
 
 ## 5.1 **OAuth Profile Info** 
 
@@ -185,7 +184,7 @@ Profile request example
 ```http
 curl -X GET \
 -H 'Authorization: Bearer {ENTER_ACCESS_TOKEN}' \
-http://api.joinme.com/OAuthbot/v1/profile 
+https://pro20.freepp.com/OAuthbot/v1/profile 
 ```
 
 Get user profile information by oauth.  
@@ -197,7 +196,7 @@ Get user profile information by oauth.
 | Header   | Authorization : Bearer {Access Token}                        |
 | Request  | /OAuthbot/v1/profile                                         |
 | Body     | None                                                         |
-| Response | {<br />"name": "Joinme Test",<br />"pid": "Uxxxxxxxxxxxxxx...",<br />"avatar": "https://abc.com/...",<br />"locale": "zh_TW"<br />} |
+| Response | {<br />"name": "FreePP Test",<br />"pid": "Uxxxxxxxxxxxxxx...",<br />"avatar": "https://abc.com/...",<br />"locale": "zh_TW"<br />} |
 
 
 
@@ -214,7 +213,7 @@ Server returns the status code 200 and a JSON object with the following paramete
 
 # 6. Examples : Sample Web Application Server for OAuth 
 
-Please download "oAuth" which is Sample Web Server to run OAuth flow with JoinMe Server. You can build this sample code to start your first Web Application.
+Please download "oAuth" which is Sample Web Server to run OAuth flow with FreePP Server. You can build this sample code to start your first Web Application.
 
 
 ## 6.1  Nodejs Environment preparation
@@ -237,7 +236,7 @@ Now, your web application server is running.
 
 
 
-## 6.3 Run Test Page for JoinMe OAuth Flow
+## 6.3 Run Test Page for FreePP OAuth Flow
 
 Test entrance web page in your server is :  http://$sample_server_ip:$port/oauth/3rdparty
 
@@ -249,7 +248,7 @@ Redirect URL to handle result:   http://$sample_server:$port/oauth/code
 
 Following is the screenshot.  Please fill in the parameters : agid, appid, appkey, and uri.
 
-You can get your agid, appid, appkey from Developer Registration of JoinMe.  
+You can get your agid, appid, appkey from Developer Registration of FreePP.  
 
 URI could be " http://$sample_server:$port/oauth/code" in sample server
 
