@@ -1,7 +1,7 @@
 1.Purpose 
 ========
 
-This document describes how to integrate JoinMe OAuth with 3rd Party’s Web
+This document describes how to integrate FreePP OAuth with 3rd Party’s Web
 Application.
 
 
@@ -9,7 +9,7 @@ Application.
 2.Before User Login: Create 3rd Party Application , and Agent 
 ============================================================
 
-Please go to JoinMe Developer Web, and create App and Agent for 3rd Party
+Please go to FreePP Developer Web, and create App and Agent for 3rd Party
 application.  
 
 Examples for Application, and Agents creation :  
@@ -23,29 +23,29 @@ Examples for Application, and Agents creation :
 ==========
 
 Following are Flow Diagram which describes the Login Interaction between
-User, JoinMe Authentication Server, and 3rd Party Application.  
+User, FreePP Authentication Server, and 3rd Party Application.  
 
 ![](media/9b04f11b113eb4efa9952adf96e8bb69.png)
 
 3.1 Steps Description:
 ------------------
 
-1. 3rd Party directs user to JoinMe Authentication Login Page with appid,
+1. 3rd Party directs user to FreePP Authentication Login Page with appid,
    agid, redirect_uri & state.Please Refer "OAuth login".
 
-2. JoinMe Login page will popup in browser, and user login in as
-   authenticated. Browser shows Profiles List of user’s JoinMe account, and
+2. FreePP Login page will popup in browser, and user login in as
+   authenticated. Browser shows Profiles List of user’s FreePP account, and
    user chooses which profile to be approved. Then user agrees to grant the
    requested permission to 3rd Party Application.
 
-3. JoinMe Authentication Server redirects user back to 3rd Party via
+3. FreePP Authentication Server redirects user back to 3rd Party via
    redirect_uri, and return granted code,& state. Please refer “Redirect code
    handle".
 
 4. 3rd Party requests access token by “https://imc-pro.freepp.com/provider/token”
    endoint with code.
 
-5. JoinMe Authentication Server validate 3rd Party Application, and returns
+5. FreePP Authentication Server validate 3rd Party Application, and returns
    access token, and refresh token. Please refer “Request Access Token by
    Code”.  
    3rd Party Application could refresh token before token expired. Please refer
