@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const logger = require('./logger');
 const cookieParser = require('cookie-parser');
 const https = require('https');
