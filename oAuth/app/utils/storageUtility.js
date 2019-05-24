@@ -124,6 +124,18 @@ export function removeQuery() {
   sessionStorage.removeItem('query');
 }
 
+export function getPid() {
+  return JSON.parse(sessionStorage.getItem('pid'));
+}
+
+export function setPid(pid) {
+  sessionStorage.setItem('pid', JSON.stringify(pid));
+}
+
+export function removePid() {
+  sessionStorage.removeItem('pid');
+}
+
 export function getUrl() {
   return JSON.parse(sessionStorage.getItem('url'));
 }

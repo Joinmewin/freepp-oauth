@@ -32,9 +32,9 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
     return (
       <div>
         <Helmet
-          titleTemplate="%s - JoinMe OAuth"
-          defaultTitle="JoinMe OAuth System"
-          meta={[{ name: 'description', content: 'JoinMe OAuth System' }]}
+          titleTemplate="%s - FreePP OAuth"
+          defaultTitle="FreePP OAuth System"
+          meta={[{ name: 'description', content: 'FreePP OAuth System' }]}
         />
         <div className={styles.maincontent}>{this.props.children}</div>
       </div>

@@ -18,6 +18,7 @@ import {
   setAccToken,
   setRefToken,
   setQuery,
+  setPid,
 } from 'utils/storageUtility';
 
 // Little helper function to abstract going to different pages
@@ -59,6 +60,7 @@ export function* postToken(action) {
 
     console.log("get query list: ",JSON.stringify(access_resp));
     yield call(setQuery, access_resp);
+    yield call(setPid, access_resp.pid);
     forwardTo('/oauth/access');
     return access_resp;
   } catch (error) {

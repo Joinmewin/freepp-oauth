@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const logger = require('./logger');
-
+const cookieParser = require('cookie-parser');
+const https = require('https');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -11,8 +12,26 @@ const ngrok =
     : false;
 const resolve = require('path').resolve;
 const app = express();
+const fs = require('fs');
 
-app.use(cors());
+function getIPAddress() {
+  var interfaces = require('os').networkInterfaces();
+  for (var devName in interfaces) {
+    var iface = interfaces[devName];
+
+    for (var i = 0; i < iface.length; i++) {
+      var alias = iface[i];
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal)
+        return alias.address;
+    }
+  }
+  return '0.0.0.0';
+}
+
+console.log(getIPAddress());
+
+app.use(cookieParser());
+
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
@@ -48,8 +67,16 @@ const port = argv.port || process.env.PORT || 3033;
 // return true;
 // });
 
+
+const server = https.createServer({
+        key: fs.readFileSync("./ssl/ssl.key"),
+        cert: fs.readFileSync("./ssl/ssl.cert")
+},app)
+
+
 // Start your app.
-app.listen(port, err => {
+server.listen(port, err => {
+//app.listen(port, err => {
   if (err) {
     return logger.error(err.message);
   }
