@@ -233,7 +233,7 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
     "lint-staged": "2.0.2",
-    "lodash": "4.13.1",
+    "lodash": "4.17.19",
     "minimist": "1.2.0",
     "mocha": "2.5.3",
     "ngrok": "2.2.2",
